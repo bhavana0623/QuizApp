@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+details
+{% endblock %}
+
+{% block content %}
+
+<h2 class="p-1"> </h2>
+
+<div class="card m-5">
+    <h5 class="card-header">Test:{{Quiz.name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{Quiz.description}}</h5>
+      <p class="card-text">Max Marks:{{Quiz.max_marks}}<br>Time:{{Quiz.total_time}}</p>
+      <br>
+
+      <H5 class="card-header">Quiz Instructions<br></h5>
+      <p class="card-text">
+        1. All questions are compulsory.<br>
+        2. Time limit: {{Quiz.total_time}}mins.<br>
+        3. Do not refresh or navigate away from the page.<br>
+        4. Use only authorized materials and assistance.<br>
+        5. Contact your instructor immediately if you encounter technical issues.<br><br>
+        Good luck!</p>
+      <a href="{% url 'start' Quiz.id %}" class="btn btn-primary">Start Test</a>
+    </div>
+  </div>
+
+
+{% endblock %}

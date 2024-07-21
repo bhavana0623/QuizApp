@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}results{% endblock %}
+
+{% block content %}
+   <h1>Quiz results</h1>
+   <p>You scored :{{score}} out of {{questions}}
+   <a href="{% url 'home' %}">Back to home</a>
+{% endblock %}
+
