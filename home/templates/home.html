@@ -7,25 +7,50 @@ homepage
 {% block content %}
 
 <h1 class="m-5">Welcome {{name}} (test)</h1>
+
+
+{% if user.is_staff %}
+<a href="{% url 'create_quiz' %}" class="btn btn-primary m-3">create quiz</a>
+{%endif%}
+
+
+<h2 class="p-3">Available Test</h2>
 <hr>
 
-<h2 class="p-1">Available Test</h2>
-
-
-{% for quiz in quizs %}
-<div class="card m-3 p-4 g-col-6 bg-dark-subtle" style="width: 18rem;">
-    <div class="car d-body">
-      <h5 class="card-title ">{{quiz.name}}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary ">Max Marks:{{quiz.max_marks}}</h6>
-      <hr>
-      <p class="card-text">{{quiz.description}}</p>
-      <a href="{% url 'quiz_details' quiz.id %}" class="btn btn-primary">Start Test</a>
-      
+<div class="container row gap-4 m-4">
+  {% for quiz in quizs %}
+    <div class="card m-4 p-4 g-col-6 bg-dark bg-gradient" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title ">{{quiz.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary ">Max Marks:{{quiz.max_marks}}</h6>
+        <hr>
+        <p class="card-text">{{quiz.description}}</p>
+        <a href="{% url 'quiz_details' quiz.id %}" class="btn btn-primary">Start Test</a>
+        {% if user.is_staff %}
+        <a href="{% url 'edit_quiz' quiz.id %}" class="btn btn-primary">edit test</a>
+        {% endif %}
+      </div>
     </div>
+  
+  {% endfor %}
+</div>
+
+<div class="container col gap-4 m-4 p-4">
+  <h2 class="p-3">Completed Tests</h2>
+  <hr>
+  <div class="container row gap-4 m-4 h-3">
+    NO tests attempted
+  </div> 
+</div>
+
+
+
+<div class="container col gap-4 m-4 p-4">
+  <h2 class="p-3">Results</h2>
+  <hr>
+  <div class="container row gap-4 m-4 h-3">
+    No tests Attempted
   </div>
-  <div> 
-{% endfor %}
-
-
+</div>
 
 {% endblock %}
